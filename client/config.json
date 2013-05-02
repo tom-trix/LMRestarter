@@ -1,0 +1,29 @@
+{
+     "id": "LMRestarter",
+     "paths": ".",
+     "pretty-print": true,
+     "mode": "WHITESPACE",
+     "level": "VERBOSE",
+     "modules": {
+          "trix": {
+               "inputs": ["client.js"],
+               "deps": []
+          }
+     },
+     "module-output-path": "../%s.js",
+     "treat-warnings-as-errors": true,
+     "checks": {
+          "accessControls": "ERROR",
+          "visibility": "ERROR",
+          "checkRegExp": "ERROR",
+          "checkTypes": "ERROR",
+          "checkVars": "ERROR",
+          "deprecated": "ERROR",
+          "fileoverviewTags": "ERROR",
+          "invalidCasts": "ERROR",
+          "missingProperties": "ERROR",
+          "nonStandardJsDocs": "ERROR",
+          "undefinedVars": "ERROR",
+          "unknownDefines": "ERROR"
+     }
+}
