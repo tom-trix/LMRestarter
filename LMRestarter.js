@@ -24,12 +24,12 @@ server.get('/isrun', function(request, response) {
 
 /** Остановка сервера */
 server.get('/stop', function(request, response) {
-    handle('./mancer-stop.sh; echo true', request, response);
+    handle('./mancer-stop; echo true', request, response);
 });
 
 /** Убийство сервера */
 server.get('/kill', function(request, response) {
-    handle('./mancer-kill.sh; echo true', request, response);
+    handle('./mancer-kill; echo true', request, response);
 });
 
 /** Зверское убийство сервера */
@@ -39,7 +39,7 @@ server.get('/wipeout', function(request, response) {
 
 /** Запуск сервера (+ проверка, не запущен ли процесс, заданный в PID) */
 server.get('/start', function(request, response) {
-    handle('if [ -d "/proc/$(cat ../mancer.pid)" ]; then echo "Unable to start!"; else ./mancer-start.sh; echo true; fi', request, response);
+    handle('if [ -d "/proc/$(cat ../mancer.pid)" ]; then echo "Unable to start!"; else ./mancer-start; echo true; fi', request, response);
 });
 
 
@@ -70,7 +70,7 @@ function sendSMS(number) {
     xmlhttp.open('GET', 'http://office.mobak.ru/app/mancer-send.php?userNumber=' + number + '&message=Password%20' + password, true);
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
-            if (xmlhttp.responseText==0)
+            if (xmlhttp.responseText == 0)
                 console.log(new Date + ': SMS sent successfully');
             else console.log(new Date + ': Failed to send SMS')
     };
