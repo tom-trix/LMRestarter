@@ -67,7 +67,7 @@ function handle(bash, request, response) {
  */
 function sendSMS(number) {
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open('GET', 'http://office.mobak.ru/app/mancer-send.php?userNumber=' + number + '&message=Password%20' + password, true);
+    xmlhttp.open('GET', 'http://office.mobak.ru/app/mancer-send.php?userNumber=' + number + '&message=(Rus)%20Password%20' + password, true);
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
             if (xmlhttp.responseText == 0)
