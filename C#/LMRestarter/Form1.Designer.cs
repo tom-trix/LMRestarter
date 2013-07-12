@@ -32,16 +32,17 @@
             this.BtnAuth = new System.Windows.Forms.Button();
             this.TboxAuth = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.GBoxAuth = new System.Windows.Forms.GroupBox();
+            this.cmbServer = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.LblStatus = new System.Windows.Forms.Label();
             this.BtnStart = new System.Windows.Forms.Button();
             this.BtnWipeout = new System.Windows.Forms.Button();
             this.BtnKill = new System.Windows.Forms.Button();
             this.BtnStop = new System.Windows.Forms.Button();
+            this.GBoxAuth = new System.Windows.Forms.GroupBox();
             this.panel1.SuspendLayout();
-            this.GBoxAuth.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.GBoxAuth.SuspendLayout();
             this.SuspendLayout();
             // 
             // BtnAuth
@@ -67,22 +68,25 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.GBoxAuth);
             this.panel1.Controls.Add(this.BtnAuth);
+            this.panel1.Controls.Add(this.cmbServer);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(284, 262);
             this.panel1.TabIndex = 2;
             // 
-            // GBoxAuth
+            // cmbServer
             // 
-            this.GBoxAuth.Controls.Add(this.TboxAuth);
-            this.GBoxAuth.Location = new System.Drawing.Point(83, 129);
-            this.GBoxAuth.Name = "GBoxAuth";
-            this.GBoxAuth.Size = new System.Drawing.Size(117, 50);
-            this.GBoxAuth.TabIndex = 2;
-            this.GBoxAuth.TabStop = false;
-            this.GBoxAuth.Text = "Введите пароль";
-            this.GBoxAuth.Visible = false;
+            this.cmbServer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbServer.FormattingEnabled = true;
+            this.cmbServer.Items.AddRange(new object[] {
+            "lordmancer.ru",
+            "lordmancer.com"});
+            this.cmbServer.Location = new System.Drawing.Point(83, 33);
+            this.cmbServer.Name = "cmbServer";
+            this.cmbServer.Size = new System.Drawing.Size(117, 21);
+            this.cmbServer.TabIndex = 4;
+            this.cmbServer.SelectedIndexChanged += new System.EventHandler(this.CmbServerIndexChanged);
             // 
             // panel2
             // 
@@ -99,10 +103,10 @@
             // LblStatus
             // 
             this.LblStatus.AutoSize = true;
-            this.LblStatus.Font = new System.Drawing.Font("Arial Narrow", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.LblStatus.Location = new System.Drawing.Point(38, 22);
             this.LblStatus.Name = "LblStatus";
-            this.LblStatus.Size = new System.Drawing.Size(107, 31);
+            this.LblStatus.Size = new System.Drawing.Size(130, 31);
             this.LblStatus.TabIndex = 4;
             this.LblStatus.Text = "Server is";
             // 
@@ -146,6 +150,17 @@
             this.BtnStop.UseVisualStyleBackColor = true;
             this.BtnStop.Click += new System.EventHandler(this.BtnStopClick);
             // 
+            // GBoxAuth
+            // 
+            this.GBoxAuth.Controls.Add(this.TboxAuth);
+            this.GBoxAuth.Location = new System.Drawing.Point(83, 129);
+            this.GBoxAuth.Name = "GBoxAuth";
+            this.GBoxAuth.Size = new System.Drawing.Size(117, 50);
+            this.GBoxAuth.TabIndex = 2;
+            this.GBoxAuth.TabStop = false;
+            this.GBoxAuth.Text = "Введите пароль";
+            this.GBoxAuth.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -159,12 +174,12 @@
             this.Name = "Form1";
             this.Opacity = 0.9D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Restarter client";
+            this.Text = "Restarter client (2.0)";
             this.panel1.ResumeLayout(false);
-            this.GBoxAuth.ResumeLayout(false);
-            this.GBoxAuth.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.GBoxAuth.ResumeLayout(false);
+            this.GBoxAuth.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -181,6 +196,7 @@
         private System.Windows.Forms.Button BtnWipeout;
         private System.Windows.Forms.Button BtnKill;
         private System.Windows.Forms.Button BtnStop;
+        private System.Windows.Forms.ComboBox cmbServer;
 
     }
 }

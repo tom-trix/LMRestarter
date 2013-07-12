@@ -13,12 +13,18 @@ namespace LMRestarter
         /// Password for authentication
         /// </summary>
         private String _password = "";
+
+        /// <summary>
+        /// Current server
+        /// </summary>
+        private String _server = @"lordmancer.ru";
         
         /// <summary>
         /// Constructor
         /// </summary>
         public Form1() {
             InitializeComponent();
+            cmbServer.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -72,7 +78,7 @@ namespace LMRestarter
         private void BtnAuthClick(object sender, EventArgs e)
         {
             if (!GBoxAuth.Visible) {
-                var s = doRequest("http://lordmancer.ru:20008/register", "");
+                var s = doRequest(String.Format("http://{0}:20008/register", _server), "");
                 if (s.Contains(@"Exception")) {
                     MessageBox.Show(@"No connection to Node.js server");
                     return;
@@ -83,7 +89,8 @@ namespace LMRestarter
             }
             else {
                 _password = TboxAuth.Text.Trim();
-                if (doRequest("http://lordmancer.ru:20008/isrun", _password).StartsWith("Not auth")) {
+                if (doRequest(String.Format("http://{0}:20008/isrun", _server), _password).StartsWith("Not auth"))
+                {
                     MessageBox.Show(@"Wrong password!");
                     return;
                 }
@@ -91,7 +98,7 @@ namespace LMRestarter
                 new Thread(() => {
                     while (!IsDisposed)
                         try {
-                            var s = doRequest("http://lordmancer.ru:20008/isrun", _password);
+                            var s = doRequest(String.Format("http://{0}:20008/isrun", _server), _password);
                             if (s.StartsWith("Not auth")) {
                                 MessageBox.Show(@"Your password is expired! Sign in again!");
                                 Invoke((MethodInvoker)(() => LblStatus.Text = ""));
@@ -112,26 +119,26 @@ namespace LMRestarter
 
         private void BtnStopClick(object sender, EventArgs e)
         {
-            var s = doRequest("http://lordmancer.ru:20008/stop", _password);
+            var s = doRequest(String.Format("http://{0}:20008/stop", _server), _password);
             MessageBox.Show(s.StartsWith("Not auth") ? @"Your password is expired!" : "Server sent: " + s);
         }
 
         private void BtnKillClick(object sender, EventArgs e)
         {
-            var s = doRequest("http://lordmancer.ru:20008/kill", _password);
+            var s = doRequest(String.Format("http://{0}:20008/kill", _server), _password);
             MessageBox.Show(s.StartsWith("Not auth") ? @"Your password is expired" : "Server sent: " + s);
         }
 
         private void BtnWipeoutClick(object sender, EventArgs e)
         {
             if (MessageBox.Show(@"This action is NOT recommended! Continue?", "", MessageBoxButtons.YesNoCancel) != DialogResult.Yes) return;
-            var s = doRequest("http://lordmancer.ru:20008/wipeout", _password);
+            var s = doRequest(String.Format("http://{0}:20008/wipeout", _server), _password);
             MessageBox.Show(s.StartsWith("Not auth") ? @"Your password is expired" : "Server sent: " + s);
         }
 
         private void BtnStartClick(object sender, EventArgs e)
         {
-            var s = doRequest("http://lordmancer.ru:20008/start", _password);
+            var s = doRequest(String.Format("http://{0}:20008/start", _server), _password);
             MessageBox.Show(s.StartsWith("Not auth") ? @"Your password is expired" : "Server sent: " + s);
         }
 
@@ -139,6 +146,11 @@ namespace LMRestarter
         {
             if (e.KeyCode == Keys.Enter)
                 BtnAuthClick(sender, null);
+        }
+
+        private void CmbServerIndexChanged(object sender, EventArgs e)
+        {
+            _server = cmbServer.SelectedItem.ToString();
         }
     }
 }
