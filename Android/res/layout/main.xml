@@ -5,6 +5,7 @@
               android:layout_height="fill_parent"
               android:gravity="center_vertical|center_horizontal">
     <RadioGroup
+            android:id="@+id/radioServer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -13,24 +14,26 @@
             android:id="@+id/radioLMRU"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="lordmancer.ru"/>
+            android:text="@string/lordmancer_ru"
+            android:onClick="radioServerIndexChanged"/>
         <RadioButton
             android:id="@+id/radioLMCOM"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="lordmancer.com"/>
+            android:text="@string/lordmancer_com"
+            android:onClick="radioServerIndexChanged"/>
     </RadioGroup>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign in"
+            android:text="@string/sign_in"
             android:id="@+id/btnAuth"
-            android:onClick="btnAuthOnClick"/>
+            android:onClick="btnAuthClick"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/txtPswd"
-            android:hint="Input a password"
+            android:hint="@string/input_password"
             android:inputType="number"
             android:visibility="invisible"/>
 </LinearLayout>

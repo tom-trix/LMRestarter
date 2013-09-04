@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">LMRestarter</string>
+    <string name="lordmancer_ru">lordmancer.ru</string>
+    <string name="lordmancer_com">lordmancer.com</string>
+    <string name="sign_in">Sign in</string>
+    <string name="input_password">Input a password</string>
+    <string name="server_is">Server is</string>
+    <string name="stop">Stop</string>
+    <string name="kill">Kill</string>
+    <string name="wipe_out">Wipe out</string>
+    <string name="start">Start</string>
 </resources>

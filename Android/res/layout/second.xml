@@ -4,38 +4,43 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:gravity="center_vertical|center_horizontal">
-    <RadioGroup
-            android:layout_width="wrap_content"
+    <TextView
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center"
-            android:checkedButton="@+id/radioLMRU">
-        <RadioButton
-            android:id="@+id/radioLMRU"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="fgsgse"/>
-        <RadioButton
-            android:id="@+id/radioLMCOM"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="esges"/>
-    </RadioGroup>
+            android:text="@string/server_is"
+            android:id="@+id/lblStatus"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:layout_marginBottom="8dp"/>
     <Button
-            android:layout_width="wrap_content"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:text="Sign in"
-            android:id="@+id/btnHey"
-            android:layout_gravity="center"
-            style="@android:style/TextAppearance.Inverse"
-            android:ellipsize="middle"/>
-    <EditText
-            android:layout_width="wrap_content"
+            android:text="@string/stop"
+            android:id="@+id/btnStop"
+            android:layout_margin="4dp"
+            android:onClick="btnStopClick"/>
+    <Button
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:id="@+id/txtPswd"
-            android:layout_gravity="center"
-            android:hint="Input a password"
-            android:inputType="number"
-            android:visibility="invisible"/>
+            android:text="@string/kill"
+            android:id="@+id/btnKill"
+            android:layout_margin="4dp"
+            android:onClick="btnKillClick"/>
+    <Button
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="@string/wipe_out"
+            android:id="@+id/btnWipeout"
+            android:layout_margin="4dp"
+            android:onClick="btnWipeoutClick"/>
+    <Button
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="@string/start"
+            android:id="@+id/btnStart"
+            android:layout_margin="4dp"
+            android:onClick="btnStartClick"
+            android:enabled="false"/>
 </LinearLayout>
 
