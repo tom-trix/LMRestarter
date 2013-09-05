@@ -37,6 +37,7 @@
             android:id="@+id/txtPswd"
             android:hint="@string/input_password"
             android:inputType="number"
+            android:layout_margin="4dp"
             android:visibility="invisible"/>
 </LinearLayout>
 
