@@ -53,14 +53,14 @@ public open class TrixActivity() : Activity() {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
     }
 
-    /** Shows a YES-NO dialog and runs the <b>onYes</b> function if the user clicks YES */
-    private fun showDialog(s: String, onYes: () -> Unit) {
+    /** Shows a 2-buttons dialog and runs the <b>onRight</b> function if the user clicks a right button */
+    private fun showDialog(s: String, leftText: String, rightString: String, onRight: () -> Unit) {
         var builder = AlertDialog.Builder(this)
-        builder.setMessage(s)
-        builder.setNegativeButton("No", null)
-        builder.setPositiveButton("Yes", object : DialogInterface.OnClickListener {
+        builder setMessage s
+        if (leftText.size > 0) builder.setNegativeButton(leftText, null)
+        builder.setPositiveButton(rightString, object : DialogInterface.OnClickListener {
             public override fun onClick(p0: DialogInterface, p1: Int) {
-                onYes()
+                onRight()
             }
         })
         builder.create().show()
@@ -74,25 +74,25 @@ public open class TrixActivity() : Activity() {
 
         if (txtPswd.getVisibility() == View.INVISIBLE) {
             val s = doRequest("http://$_server:20008/register", "")
-            if (s.contains("Exception")) {showMsg("No connection to Node.js server"); return}
-            txtPswd.setVisibility(View.VISIBLE)
-            (v as Button).setText("Come on!")
+            if (s contains "Exception") {showMsg("No connection to Node.js server"); return}
+            txtPswd setVisibility View.VISIBLE
+            (v as Button) setText "Come on!"
         } else {
             _password = txtPswd.getText().toString()
-            if (doRequest("http://$_server:20008/isrun", _password).startsWith("Not auth")) {showMsg("Wrong password!"); return}
+            if (doRequest("http://$_server:20008/isrun", _password) startsWith "Not auth") {showMsg("Wrong password!"); return}
             setContentView(R.layout.second)
             Thread(object : Runnable {
                 public override fun run() {
                     while (!activity.isFinishing()) {
-                        var s = doRequest("http://$_server:20008/isrun", _password);
-                        if (s.startsWith("Not auth")) {showMsg("Your password is expired! Sign in again!"); return}
-                        val isrun = java.lang.Boolean.parseBoolean(s)
+                        val s = doRequest("http://$_server:20008/isrun", _password);
                         _handler?.post(object : Runnable {
                             public override fun run() {
+                                if (s startsWith "Not auth") showDialog("Your password is expired! Sign in again!", "", "OK", {() -> activity.finish()})
+                                val isrun = java.lang.Boolean.parseBoolean(s)
                                 val lblStatus = activity.findViewById(R.id.lblStatus) as TextView
-                                lblStatus.setText(if (isrun) "Server is running" else "Server is stopped")
-                                lblStatus.setTextColor(if (isrun) Color.GREEN else Color.rgb(220, 50, 50))
-                                (activity.findViewById(R.id.btnStart) as Button).setEnabled(!isrun)
+                                lblStatus setText (if (isrun) "Server is running" else "Server is stopped")
+                                lblStatus setTextColor (if (isrun) Color.GREEN else Color.rgb(240, 50, 50))
+                                (activity.findViewById(R.id.btnStart) as Button) setEnabled !isrun
                             }
                         })
                         Thread.sleep(6000)
@@ -104,24 +104,24 @@ public open class TrixActivity() : Activity() {
 
     public fun btnStopClick(v: View) {
         val s = doRequest("http://$_server:20008/stop", _password)
-        showMsg(if (s.startsWith("Not auth")) "Your password is expired" else "Server sent: $s")
+        showMsg(if (s startsWith "Not auth") "Your password is expired" else "Server sent: $s")
     }
 
     public fun btnKillClick(v: View) {
         val s = doRequest("http://$_server:20008/kill", _password)
-        showMsg(if (s.startsWith("Not auth")) "Your password is expired" else "Server sent: $s")
+        showMsg(if (s startsWith "Not auth") "Your password is expired" else "Server sent: $s")
     }
 
     public fun btnWipeoutClick(v: View) {
-        showDialog("This action is NOT recommended! Continue?", {() ->
+        showDialog("This action is NOT recommended! Continue?", "No", "Yes", {() ->
             val s = doRequest("http://$_server:20008/wipeout", _password)
-            showMsg(if (s.startsWith("Not auth")) "Your password is expired" else "Server sent: $s")
+            showMsg(if (s startsWith "Not auth") "Your password is expired" else "Server sent: $s")
         })
     }
 
     public fun btnStartClick(v: View) {
         val s = doRequest("http://$_server:20008/start", _password)
-        showMsg(if (s.startsWith("Not auth")) "Your password is expired" else "Server sent: $s")
+        showMsg(if (s startsWith "Not auth") "Your password is expired" else "Server sent: $s")
     }
 
     public fun radioServerIndexChanged(v: View) {

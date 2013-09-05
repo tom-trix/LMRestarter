@@ -19,21 +19,27 @@
             android:text="@string/stop"
             android:id="@+id/btnStop"
             android:layout_margin="4dp"
-            android:onClick="btnStopClick"/>
+            android:onClick="btnStopClick"
+            android:textStyle="bold"
+            android:background="@drawable/blue_button"/>
     <Button
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:text="@string/kill"
             android:id="@+id/btnKill"
             android:layout_margin="4dp"
-            android:onClick="btnKillClick"/>
+            android:onClick="btnKillClick"
+            android:textStyle="bold"
+            android:background="@drawable/blue_button"/>
     <Button
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:text="@string/wipe_out"
             android:id="@+id/btnWipeout"
             android:layout_margin="4dp"
-            android:onClick="btnWipeoutClick"/>
+            android:onClick="btnWipeoutClick"
+            android:textStyle="bold"
+            android:background="@drawable/blue_button"/>
     <Button
             android:layout_width="180dp"
             android:layout_height="wrap_content"
@@ -41,6 +47,8 @@
             android:id="@+id/btnStart"
             android:layout_margin="4dp"
             android:onClick="btnStartClick"
+            android:textStyle="bold"
+            android:background="@drawable/blue_button"
             android:enabled="false"/>
 </LinearLayout>
 

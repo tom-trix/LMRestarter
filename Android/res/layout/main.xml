@@ -28,7 +28,9 @@
             android:layout_height="wrap_content"
             android:text="@string/sign_in"
             android:id="@+id/btnAuth"
-            android:onClick="btnAuthClick"/>
+            android:onClick="btnAuthClick"
+            android:textStyle="bold"
+            android:background="@drawable/green_button"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
