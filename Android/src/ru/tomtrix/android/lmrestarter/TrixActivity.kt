@@ -54,13 +54,13 @@ public open class TrixActivity() : Activity() {
     }
 
     /** Shows a 2-buttons dialog and runs the <b>onRight</b> function if the user clicks a right button */
-    private fun showDialog(s: String, leftText: String, rightString: String, onRight: () -> Unit) {
+    private fun showDialog(s: String, rightText: String, leftText: String, onLeftClick: () -> Unit) {
         var builder = AlertDialog.Builder(this)
         builder setMessage s
-        if (leftText.size > 0) builder.setNegativeButton(leftText, null)
-        builder.setPositiveButton(rightString, object : DialogInterface.OnClickListener {
+        if (rightText.size > 0) builder.setNegativeButton(rightText, null)
+        builder.setPositiveButton(leftText, object : DialogInterface.OnClickListener {
             public override fun onClick(p0: DialogInterface, p1: Int) {
-                onRight()
+                onLeftClick()
             }
         })
         builder.create().show()
